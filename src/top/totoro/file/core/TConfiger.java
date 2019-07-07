@@ -12,10 +12,11 @@ public final class TConfiger implements FileConfig {
 	private TFile mTFile;
 	private String separator = SystemProperties.getSystem().getFileSeparator();
 
-	public TConfiger(FileProperty property){
-		this(property,null);
+	public TConfiger(FileProperty property) {
+		this(property, null);
 	}
-	public TConfiger(FileProperty fileProperty,TFile t) {
+
+	public TConfiger(FileProperty fileProperty, TFile t) {
 		mFileProperty = fileProperty;
 		mTFile = t;
 	}
@@ -29,9 +30,10 @@ public final class TConfiger implements FileConfig {
 			return mTFile;
 		}
 		if (os.toLowerCase().contains("win")) {
-			if (file.exists() && file.isFile()) {
+			if (file.exists()) {
 				try {
-					Runtime.getRuntime().exec("attrib +H " + "\"" + file.getAbsolutePath() + "\"");
+					Runtime.getRuntime().exec(new StringBuilder("attrib +H ").append("\"")
+							.append(file.getAbsolutePath()).append("\"").toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -40,21 +42,17 @@ public final class TConfiger implements FileConfig {
 			}
 		} else if (os.toLowerCase().contains("linux")) {
 			String name = file.getName();
-			String path = mFileProperty.getPath();
+			String path = file.getPath().substring(0, file.getPath().lastIndexOf(separator) + 1);
 			// Linux系统，文件已被创建
 			if (file.exists() && file.isFile() && path != null && name != null && !name.startsWith(".")) {// 文件隐藏
 				mFileProperty.setName("." + name);
 				mFileProperty.setFile(new File(path + separator + mFileProperty.getName()));
-				file.renameTo(mFileProperty.getFile());System.out.println(mFileProperty.getFile());
+				file.renameTo(mFileProperty.getFile());
 			} else if (file.exists() && file.isDirectory() && path != null) {// 文件夹隐藏
-				path = path.substring(0, mFileProperty.getPath().length() - 1);
-				String end = path.substring(path.lastIndexOf(separator) + 1);
-				path = path.substring(0, path.lastIndexOf(separator) + 1);
-				StringBuilder builder = new StringBuilder(path);
-				builder.append(separator).append(".").append(end).append(separator);
+				StringBuilder builder = new StringBuilder(path).append(".").append(name).append(separator);
 				mFileProperty.setPath(builder.toString());
 				mFileProperty.setFile(new File(builder.toString()));
-				file.renameTo(mFileProperty.getFile());System.out.println(mFileProperty.getFile());
+				file.renameTo(mFileProperty.getFile());
 			}
 			mFileProperty.setFile(old);
 		}
@@ -70,9 +68,10 @@ public final class TConfiger implements FileConfig {
 			return mTFile;
 		}
 		if (os.toLowerCase().contains("win")) {
-			if (file.exists() && file.isFile()) {
+			if (file.exists()) {
 				try {
-					Runtime.getRuntime().exec("attrib -H " + "\"" + file.getAbsolutePath() + "\"");
+					Runtime.getRuntime().exec(new StringBuilder("attrib -H ").append("\"")
+							.append(file.getAbsolutePath()).append("\"").toString());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -81,17 +80,11 @@ public final class TConfiger implements FileConfig {
 			}
 		} else if (os.toLowerCase().contains("linux")) {
 			String name = file.getName();
-			String path = mFileProperty.getPath();
-			String end = "";
+			String path = file.getPath().substring(0, file.getPath().lastIndexOf(separator) + 1);
 			if (name != null && !name.startsWith(".") && path != null) {
 				file = new File(path + "." + name);
 				if (!file.exists()) {
-					path = path.substring(0, mFileProperty.getPath().length() - 1);
-					end = path.substring(path.lastIndexOf(separator) + 1);
-					path = path.substring(0, path.lastIndexOf(separator) + 1);
-					if (end != null && !end.startsWith(".")) {
-						file = new File(path + "." + end);
-					}
+					return mTFile;
 				}
 			} else {
 				TException.fileNameException("移除" + name + "文件隐藏属性失败：文件名不能为空且不能以'.'开头");
@@ -100,10 +93,10 @@ public final class TConfiger implements FileConfig {
 			// Linux系统，文件已被创建
 			if (file.exists() && file.isFile()) {// 文件取消隐藏
 				mFileProperty.setName(file.getName().substring(1));
-				mFileProperty.setFile(new File(path + mFileProperty.getName()));
+				mFileProperty.setFile(new File(path + separator + mFileProperty.getName()));
 				file.renameTo(mFileProperty.getFile());
 			} else if (file.exists() && file.isDirectory()) { // 文件夹取消隐藏
-				StringBuilder builder = new StringBuilder(path).append(end).append(separator);
+				StringBuilder builder = new StringBuilder(path).append(separator).append(name).append(separator);
 				mFileProperty.setPath(builder.toString());
 				mFileProperty.setFile(new File(builder.toString()));
 				file.renameTo(mFileProperty.getFile());
@@ -145,7 +138,7 @@ public final class TConfiger implements FileConfig {
 	public void removeFlagFile(String flag) {
 		mFileProperty.removeFlagFile(flag);
 	}
-	
+
 	@Override
 	public TFile recycle() {
 		mFileProperty.recycleProperty();

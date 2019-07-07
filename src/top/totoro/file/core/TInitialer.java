@@ -37,7 +37,7 @@ public final class TInitialer implements FileInitial {
 	@Override
 	public TFile toPath(String path) {
 		mFileProperty.setPath(DiskChose.disk(mFileProperty.getDisk()) + this.path(path, ","));
-		mFileProperty.setFile(new File(mFileProperty.getPath()));
+		// mFileProperty.setFile(new File(mFileProperty.getPath()));
 		return mTFile;
 	}
 
@@ -61,7 +61,7 @@ public final class TInitialer implements FileInitial {
 					TException.pathException("文件目录创建失败");
 				}
 			}
-			mFileProperty.setFile(dir);
+			// mFileProperty.setFile(dir);
 		}
 		return mTFile;
 	}
@@ -83,7 +83,7 @@ public final class TInitialer implements FileInitial {
 		} else {
 			mkdirs();
 		}
-		mFileProperty.setFiles(files);
+		// mFileProperty.setFiles(files);
 		return mTFile;
 	}
 
@@ -123,6 +123,7 @@ public final class TInitialer implements FileInitial {
 		LinkedList<String> paths = mFileProperty.getPaths();
 		LinkedList<String> names = mFileProperty.getNames();
 		LinkedList<File> files = new LinkedList<>();
+		File old = mFileProperty.getFile();
 		if (paths != null && paths != null) {
 			if (names.size() > 0 && paths.size() >= names.size()) {
 				for (int i = 0; i < names.size(); i++) {
@@ -136,12 +137,13 @@ public final class TInitialer implements FileInitial {
 			} else {
 				TException.fileNameException("请指定文件路径和个数对应的文件名");
 			}
-		}else if (mFileProperty.getPath() != null && names != null) {
-			String path = mFileProperty.getPath()+mSeparator;
+		} else if (mFileProperty.getPath() != null && names != null) {
+			String path = mFileProperty.getPath() + mSeparator;
 			for (int i = 0; i < names.size(); i++) {
 				files.add(new File(path + names.get(i)));
 			}
-		} 
+		}
+		mFileProperty.setFile(old);
 		mFileProperty.setFiles(files);
 		return mTFile;
 	}
@@ -156,8 +158,7 @@ public final class TInitialer implements FileInitial {
 				return mTFile;
 			}
 			if (!name.startsWith(".")) {
-				if ((new File(file.getPath() + SystemProperties.getSystem().getFileSeparator() + "." + name))
-						.exists()) {
+				if ((new File(file.getPath() + mSeparator + "." + name)).exists()) {
 					TException.fileNameException(name + "文件创建失败：文件已被隐藏");
 					return mTFile;
 				}
@@ -165,19 +166,19 @@ public final class TInitialer implements FileInitial {
 				TException.fileNameException(name + "文件创建失败：文件名不能以'.'开头");
 				return mTFile;
 			}
-			String path = file.getPath().substring(0,
-					file.getPath().lastIndexOf(SystemProperties.getSystem().getFileSeparator()));
+			String path = file.getPath().substring(0, file.getPath().lastIndexOf(mSeparator) + 1);
 			File p = new File(path);
 			if (!p.exists()) {
-				mFileProperty.setPath(path);
+				mFileProperty.setPath(path + mSeparator);
 				mkdirs();
 				mFileProperty.setFile(file);
 			}
 			try {
-				if (!file.createNewFile() && file.exists()) {
-					System.out.println(file + "目录创建成功");
+				if (name != null) {
+					if (!file.createNewFile() && file.exists()) {
+						System.out.println(file + "目录创建成功");
+					}
 				}
-
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
