@@ -1,7 +1,6 @@
 package top.totoro.file.core;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.LinkedList;
 
 import top.totoro.file.sys.SystemProperties;
@@ -9,6 +8,12 @@ import top.totoro.file.util.Disk;
 import top.totoro.file.util.DiskChose;
 import top.totoro.file.util.TException;
 
+/**
+ * 创建、删除、清空、重命名一个文件所要做的初始化和基本操作
+ * 比如：指定文件所在盘符；文件目录；文件名。。。
+ * @author 黄龙三水
+ *
+ */
 public final class TInitialer implements FileInitial {
 
 	private FileProperty mFileProperty;
@@ -24,10 +29,16 @@ public final class TInitialer implements FileInitial {
 		mTFile = t;
 	}
 
-	public FileProperty getmFileProperty() {
+	public FileProperty getFileProperty() {
 		return mFileProperty;
 	}
 
+	@Override
+	public TFile recycle() {
+		mFileProperty.recycleProperty();
+		return mTFile;
+	}
+	
 	@Override
 	public TFile toDisk(Disk disk) {
 		mFileProperty.setDisk(disk);
@@ -49,41 +60,6 @@ public final class TInitialer implements FileInitial {
 			mPathList.add(DiskChose.disk(mFileProperty.getDisk()) + path(ps[i], ","));
 		}
 		mFileProperty.setPaths(mPathList);
-		return mTFile;
-	}
-
-	@Override
-	public TFile mkdirs() {
-		if (mFileProperty.getPath() != null) {
-			File dir = new File(mFileProperty.getPath());
-			if (!dir.isDirectory()) {
-				if (!dir.mkdirs()) {
-					TException.pathException("文件目录创建失败");
-				}
-			}
-			// mFileProperty.setFile(dir);
-		}
-		return mTFile;
-	}
-
-	@Override
-	public TFile mkdirsAll() {
-		LinkedList<String> paths = mFileProperty.getPaths();
-		LinkedList<File> files = new LinkedList<>();
-		if (paths != null) {
-			for (String path : paths) {
-				File dir = new File(path);
-				if (!dir.isDirectory()) {
-					if (!dir.mkdirs()) {
-						TException.pathException("文件目录创建失败:可能磁盘" + DiskChose.disk(mFileProperty.getDisk()) + "不存在");
-					}
-				}
-				files.add(dir);
-			}
-		} else {
-			mkdirs();
-		}
-		// mFileProperty.setFiles(files);
 		return mTFile;
 	}
 
@@ -147,134 +123,16 @@ public final class TInitialer implements FileInitial {
 		mFileProperty.setFiles(files);
 		return mTFile;
 	}
-
+	
 	@Override
-	public TFile create() {
-		File file = mFileProperty.getFile();
-		if (file != null) {
-			String name = file.getName();
-			if (file.exists()) {
-				TException.fileNameException(name + "文件创建失败：文件已存在");
-				return mTFile;
-			}
-			if (!name.startsWith(".")) {
-				if ((new File(file.getPath() + mSeparator + "." + name)).exists()) {
-					TException.fileNameException(name + "文件创建失败：文件已被隐藏");
-					return mTFile;
-				}
-			} else {
-				TException.fileNameException(name + "文件创建失败：文件名不能以'.'开头");
-				return mTFile;
-			}
-			String path = file.getPath().substring(0, file.getPath().lastIndexOf(mSeparator) + 1);
-			File p = new File(path);
-			if (!p.exists()) {
-				mFileProperty.setPath(path + mSeparator);
-				mkdirs();
-				mFileProperty.setFile(file);
-			}
-			try {
-				if (name != null) {
-					if (!file.createNewFile() && file.exists()) {
-						System.out.println(file + "目录创建成功");
-					}
-				}
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} else
-			TException.fileNameException("文件创建失败：未指定文件");
+	public TFile setFlag(String flag) {
+		mFileProperty.setFlagFile(flag);
 		return mTFile;
 	}
-
+	
 	@Override
-	public TFile createAll() {
-		LinkedList<File> files = mFileProperty.getFiles();
-		if (files != null) {
-			File old = mFileProperty.getFile();
-			for (File file : files) {
-				mFileProperty.setFile(file);
-				create();
-			}
-			mFileProperty.setFile(old);
-		}
-		return mTFile;
-	}
-
-	@Override
-	public TFile clear() {
-		File file = mFileProperty.getFile();
-		if (file != null) {
-			if (file.exists()) {
-				try {
-					file.delete();
-					file.createNewFile();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			} else
-				TException.fileNameException("清空文件失败：文件" + file.getName() + "不存在");
-		} else {
-			TException.fileNameException("清空文件失败：未指定文件");
-		}
-		return mTFile;
-	}
-
-	@Override
-	public TFile clearAll() {
-		LinkedList<File> files = mFileProperty.getFiles();
-		File old = mFileProperty.getFile();
-		for (File file : files) {
-			mFileProperty.setFile(file);
-			clear();
-		}
-		mFileProperty.setFile(old);
-		return mTFile;
-	}
-
-	@Override
-	public TFile delete() {
-		File file = mFileProperty.getFile();
-		if (file != null) {
-			if (file.exists()) {
-				file.delete();
-			}
-		}
-		return mTFile;
-	}
-
-	@Override
-	public TFile deleteAll() {
-		LinkedList<File> files = mFileProperty.getFiles();
-		File old = mFileProperty.getFile();
-		for (File file : files) {
-			mFileProperty.setFile(file);
-			delete();
-		}
-		mFileProperty.setFile(old);
-		return mTFile;
-	}
-
-	@Override
-	public TFile rename(String name) {
-		if (mFileProperty.getFile() != null) {
-			if (mFileProperty.getFile().exists()) {
-				String path = mFileProperty.getFile().getAbsolutePath();
-				path = path.substring(0, path.lastIndexOf(mSeparator) + 1);
-				mFileProperty.getFile().renameTo(new File(path + name));
-			} else {
-				TException.pathException("重命名文件失败：原文件不存在");
-			}
-		} else {
-			TException.pathException("重命名文件失败：未指定文件");
-		}
-		return mTFile;
-	}
-
-	@Override
-	public TFile recycle() {
-		mFileProperty.recycleProperty();
-		return mTFile;
+	public void removeFlag(String flag) {
+		mFileProperty.removeFlagFile(flag);
 	}
 
 	/**

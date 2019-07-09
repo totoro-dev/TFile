@@ -11,20 +11,14 @@ public class TInitialerTest {
 		new top.totoro.file.sys.LinuxEnv();
 		TInitialer tfi = new TInitialer(new TProperty());
 		tfi.toDisk(Disk.C);
-		System.out.println(tfi.toPath("initial,test,tfi"));
+		tfi.toPath("initial,test,tfi");
 		tfi.toName("totoro3.txt");
 		tfi.toFile();
-		tfi.create();
-//		tfi.rename("totoro1.txt");
-//		System.out.println(tfi.toPaths("initial,test,t1").getPaths());
-//		tfi.toNames("totoro1.txt", "totoro2.txt");
-//		tfi.toFiles();
-//		tfi.createAll();
-//		tfi.clear();
-//		tfi.deleteAll();
-//		System.out.println(tfi.getmFileProperty().getFile());
-//		tfi.recycle();
-//		System.out.println(tfi.getmFileProperty().getFile());
+		tfi.toNames("totoro1.txt", "totoro2.txt");
+		tfi.toFiles();
+		System.out.println("recycle之前：" + tfi.getFileProperty().toString());
+		tfi.recycle();
+		System.out.println("recycle之后：" + tfi.getFileProperty().toString());
 	}
 
 }

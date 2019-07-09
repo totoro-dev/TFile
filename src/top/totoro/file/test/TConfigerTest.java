@@ -9,18 +9,18 @@ import top.totoro.file.util.Disk;
 public class TConfigerTest {
 	public static void main(String[] args) {
 		top.totoro.file.util.TException.setDebug(true);
-		new top.totoro.file.sys.LinuxEnv();
 		TProperty property = new TProperty();
 		TConfiger configer = new TConfiger(property);
 		property.setDisk(Disk.C);
-		property.setPath("C:\\Users\\»ÆÁúÈýË®\\root\\C\\config\\test\\t1\\");
-		property.setName("totoro1.txt");
-		property.setFile(new File(property.getPath()+property.getName()));
-//		configer.setHide();
+		property.setPath("C:/tfile/test/main/");
+		property.setName("t1.t");
+		property.setFile(new File(property.getPath() + property.getName()));
+		// configer.setHide();
+		// configer.removeHide();
+		System.out.println("property: " + property.toString());
 		configer.setOnlyRead();
+		System.out.println("\nsetOnlyRead()\n\tcanWrite: " + property.getFile().canWrite());
 		configer.removeOnlyRead();
-		configer.removeHide();
-		configer.setFlagFile("t1");
-		System.out.println(property.getFlagFile("t1"));
+		System.out.println("\nremoveOnlyRead()\n\tcanWrite: " + property.getFile().canWrite());
 	}
 }

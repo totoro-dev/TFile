@@ -6,6 +6,17 @@ import java.io.IOException;
 import top.totoro.file.sys.SystemProperties;
 import top.totoro.file.util.TException;
 
+/**
+ * 给一个文件设置一些属性
+ * 比如：隐藏属性（hide able），只读属性（readable），文件标志（flag）
+ * 1. 同时可以移除这些属性
+ * 2. 通过文件标志直接拿到指定文件而不需要使用时再次构建该文件相关信息
+ * 
+ * 注：不同环境下的隐藏属性设置方式不同（Windows/Linux（包括Android））
+ * 
+ * @author 黄龙三水
+ *
+ */
 public final class TConfiger implements FileConfig {
 
 	private FileProperty mFileProperty;
@@ -121,22 +132,6 @@ public final class TConfiger implements FileConfig {
 			file.setWritable(true);
 		}
 		return mTFile;
-	}
-
-	@Override
-	public TFile setFlagFile(String flag) {
-		mFileProperty.setFlagFile(flag);
-		return mTFile;
-	}
-
-	@Override
-	public File getFlagFile(String flag) {
-		return mFileProperty.getFlagFile(flag);
-	}
-
-	@Override
-	public void removeFlagFile(String flag) {
-		mFileProperty.removeFlagFile(flag);
 	}
 
 	@Override

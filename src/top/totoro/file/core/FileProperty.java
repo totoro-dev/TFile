@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 import top.totoro.file.util.Disk;
 
-interface FileProperty {
+public interface FileProperty {
 	
 	void setDisk(Disk disk);
 	

@@ -17,7 +17,7 @@ public class TFileTest {
 //		.toName("totoro.htm")
 //		.toFile()
 //		.create()
-		.setFlagFile("totoro");
+		.setFlag("totoro");
 		TFile.builder()
 		.toNames("t1.t","t2.t","t3.t")
 		.toFiles()

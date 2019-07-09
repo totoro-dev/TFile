@@ -7,6 +7,12 @@ import java.util.Map;
 
 import top.totoro.file.util.Disk;
 
+/**
+ * TFile创建的文件的所有相关基本特性
+ * 
+ * @author 黄龙三水
+ *
+ */
 public final class TProperty implements FileProperty {
 
 	private Disk disk;
@@ -132,4 +138,18 @@ public final class TProperty implements FileProperty {
 		files = null;
 		flagFiles.clear();
 	}
+
+	@Override
+	public String toString() {
+		return "TProperty \n"
+				+ "[disk=" + disk
+				+ ",\n path=" + path 
+				+ ",\n paths=" + paths
+				+ ",\n name=" + name 
+				+ ",\n names=" + names
+				+ ",\n file=" + file 
+				+ ",\n files=" + files
+				+ ",\n flagFiles=" + flagFiles + "]";
+	}
+	
 }

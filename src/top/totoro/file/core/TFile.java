@@ -1,14 +1,13 @@
 package top.totoro.file.core;
 
-import java.io.File;
-
 import top.totoro.file.util.Disk;
 
-public final class TFile implements FileInitial,FileConfig{
+public final class TFile implements FileInitial,FileCommon,FileConfig{
 	
 	private static final TFile mTFile = new TFile();
 	private static final TProperty property = new TProperty();
 	private static final TInitialer initialer = new TInitialer(property,mTFile);
+	private static final TCommoner commoner = new TCommoner(property,mTFile);
 	private static final TConfiger configer = new TConfiger(property,mTFile);
 	private TFile() {
 	}
@@ -42,18 +41,13 @@ public final class TFile implements FileInitial,FileConfig{
 	}
 
 	@Override
-	public TFile setFlagFile(String flag) {
-		return configer.setFlagFile(flag);
+	public TFile setFlag(String flag) {
+		return initialer.setFlag(flag);
 	}
 
 	@Override
-	public File getFlagFile(String flag) {
-		return configer.getFlagFile(flag);
-	}
-
-	@Override
-	public void removeFlagFile(String flag) {
-		configer.removeFlagFile(flag);
+	public void removeFlag(String flag) {
+		initialer.removeFlag(flag);
 	}
 
 	@Override
@@ -93,47 +87,47 @@ public final class TFile implements FileInitial,FileConfig{
 
 	@Override
 	public TFile mkdirs() {
-		return initialer.mkdirs();
+		return commoner.mkdirs();
 	}
 
 	@Override
 	public TFile mkdirsAll() {
-		return initialer.mkdirsAll();
+		return commoner.mkdirsAll();
 	}
 
 	@Override
 	public TFile create() {
-		return initialer.create();
+		return commoner.create();
 	}
 
 	@Override
 	public TFile createAll() {
-		return initialer.createAll();
+		return commoner.createAll();
 	}
 
 	@Override
 	public TFile clear() {
-		return initialer.clear();
+		return commoner.clear();
 	}
 
 	@Override
 	public TFile clearAll() {
-		return initialer.clearAll();
+		return commoner.clearAll();
 	}
 
 	@Override
 	public TFile delete() {
-		return initialer.delete();
+		return commoner.delete();
 	}
 
 	@Override
 	public TFile deleteAll() {
-		return initialer.deleteAll();
+		return commoner.deleteAll();
 	}
 
 	@Override
 	public TFile rename(String name) {
-		return initialer.rename(name);
+		return commoner.rename(name);
 	}
 
 	@Override
