@@ -18,7 +18,8 @@ public final class LinuxEnv {
 			linux.getProperties().put(linux.OS_NAME, "linux");
 			linux.getProperties().put(linux.IO_TMPDIR, tmp);
 			linux.getProperties().put(linux.ROOT_DIR, root);
-			linux.getProperties().put(linux.NO_ROOT, linux.getRootDir());
+//			linux.getProperties().put(linux.NO_ROOT, linux.getRootDir());
+			linux.getProperties().put(linux.NO_ROOT, linux.getFileSeparator());
 			File file = new File(tmp);
 			file.mkdirs();
 			return;

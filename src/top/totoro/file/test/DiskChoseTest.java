@@ -27,7 +27,7 @@ public class DiskChoseTest {
 				disk = null;
 				break;
 			case 1:
-				disk = Disk.C;
+				disk = Disk.E;
 				break;
 			case 2:
 				disk = Disk.SD;
@@ -37,6 +37,9 @@ public class DiskChoseTest {
 				break;
 			case 4:
 				disk = Disk.ROOT;
+				break;
+			case 5:
+				disk = Disk.LINUX;
 				break;
 			default:
 				break;

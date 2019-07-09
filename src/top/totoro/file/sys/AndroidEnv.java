@@ -17,7 +17,7 @@ public final class AndroidEnv {
 			noRoot = root;
 		}else if (android.isLinuxButAndroid()) {
 			// 本地测试环境是Linux系统,但不是Android系统
-			tmp = android.getTmpDir() + "data/user/0/";
+			tmp = android.getTmpDir() + "data/user/0/cache";
 			root = android.getRootDir() + "sdcard/";
 			noRoot = "/sdcard/";
 		}
