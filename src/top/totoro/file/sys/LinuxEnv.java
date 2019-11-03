@@ -8,11 +8,11 @@ public final class LinuxEnv {
 	public LinuxEnv() {
 		SystemProperties linux = SystemProperties.getTestSys("linux");
 		if (linux.isLinuxButAndroid()) {
-			// ±¾µØ²âÊÔ»·¾³¼ÈÊÇLinuxÏµÍ³,µ«²»ÊÇAndroidÏµÍ³£¬ÎŞĞè¸ü¸ÄÏµÍ³ÌØĞÔ
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ—¢æ˜¯Linuxç³»ç»Ÿ,ä½†ä¸æ˜¯Androidç³»ç»Ÿï¼Œæ— éœ€æ›´æ”¹ç³»ç»Ÿç‰¹æ€§
 			return;
 		}
 		if (linux.isWindows()) {
-			// ±¾µØ²âÊÔ»·¾³ÊÇWindowsÏµÍ³
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ˜¯Windowsç³»ç»Ÿ
 			String tmp = linux.getTmpDir() + "tmp\\";
 			String root = linux.getRootDir() + "root\\";
 			linux.getProperties().put(linux.OS_NAME, "linux");
@@ -25,18 +25,18 @@ public final class LinuxEnv {
 			return;
 		}
 		if (linux.isAndroid()) {
-			// ±¾µØ²âÊÔ»·¾³ÊÇAndroidÏµÍ³
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ˜¯Androidç³»ç»Ÿ
 			String tmp = "/sdcard/data/user/0/cache/";
 			String root = "/sdcard/root/";
 			linux.getProperties().put(linux.IO_TMPDIR, tmp);
 			linux.getProperties().put(linux.ROOT_DIR, root);
 			File file = new File(tmp);
 			if (!file.mkdirs()) {
-				TException.envException("android»·¾³ÏÂ£¬´´½¨Windows²âÊÔ»·¾³Ê±£¬ÏµÍ³Ä¬ÈÏÁÙÊ±ÎÄ¼şÂ·¾¶´´½¨Ê§°Ü£¬¿ÉÄÜÎ´ÉèÖÃ´æ´¢Ğí¿É");;
+				TException.envException("androidç¯å¢ƒä¸‹ï¼Œåˆ›å»ºWindowsæµ‹è¯•ç¯å¢ƒæ—¶ï¼Œç³»ç»Ÿé»˜è®¤ä¸´æ—¶æ–‡ä»¶è·¯å¾„åˆ›å»ºå¤±è´¥ï¼Œå¯èƒ½æœªè®¾ç½®å­˜å‚¨è®¸å¯");;
 			}
 			file = new File(root);
 			if (!file.mkdirs()) {
-				TException.envException("android»·¾³ÏÂ£¬´´½¨Windows²âÊÔ»·¾³Ê±£¬ÏµÍ³¸ùÄ¿Â¼´´½¨Ê§°Ü£¬¿ÉÄÜÎ´ÉèÖÃ´æ´¢Ğí¿É");;
+				TException.envException("androidç¯å¢ƒä¸‹ï¼Œåˆ›å»ºWindowsæµ‹è¯•ç¯å¢ƒæ—¶ï¼Œç³»ç»Ÿæ ¹ç›®å½•åˆ›å»ºå¤±è´¥ï¼Œå¯èƒ½æœªè®¾ç½®å­˜å‚¨è®¸å¯");;
 			}
 		}
 	}

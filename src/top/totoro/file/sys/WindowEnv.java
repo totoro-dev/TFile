@@ -8,11 +8,11 @@ public final class WindowEnv {
 	public WindowEnv() {
 		SystemProperties window = SystemProperties.getTestSys("window");
 		if (window.isWindows()) {
-			// ±¾µØ²âÊÔ»·¾³¼ÈÊÇwindows£¬ÎŞĞè¸ü¸ÄÏµÍ³ÌØĞÔ
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ—¢æ˜¯windowsï¼Œæ— éœ€æ›´æ”¹ç³»ç»Ÿç‰¹æ€§
 			return;
 		}
 		if (window.isLinuxButAndroid()) {
-			// ±¾µØ²âÊÔ»·¾³ÊÇLinuxµ«²»ÊÇAndroidÏµÍ³
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ˜¯Linuxä½†ä¸æ˜¯Androidç³»ç»Ÿ
 			String tmp = "/C:/root/AppData/Local/Temp/";
 			String root = "/C:/root";
 			window.getProperties().put(window.OS_NAME, "windows");
@@ -23,7 +23,7 @@ public final class WindowEnv {
 			return;
 		}
 		if (window.isAndroid()) {
-			// ±¾µØ²âÊÔ»·¾³ÊÇAndroidÏµÍ³
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ˜¯Androidç³»ç»Ÿ
 			String tmp = "/sdcard/C:/Users/root/AppData/Local/Temp/";
 			String root = "/sdcard/C:/User/root";
 			window.getProperties().put(window.OS_NAME, "windows");
@@ -32,11 +32,11 @@ public final class WindowEnv {
 			window.getProperties().put(window.NO_ROOT, "/sdcard/");
 			File file = new File(tmp);
 			if (!file.mkdirs()) {
-				TException.envException("android»·¾³ÏÂ£¬´´½¨Windows²âÊÔ»·¾³Ê±£¬ÏµÍ³Ä¬ÈÏÁÙÊ±ÎÄ¼şÂ·¾¶´´½¨Ê§°Ü£¬¿ÉÄÜÎ´ÉèÖÃ´æ´¢Ğí¿É");
+				TException.envException("androidç¯å¢ƒä¸‹ï¼Œåˆ›å»ºWindowsæµ‹è¯•ç¯å¢ƒæ—¶ï¼Œç³»ç»Ÿé»˜è®¤ä¸´æ—¶æ–‡ä»¶è·¯å¾„åˆ›å»ºå¤±è´¥ï¼Œå¯èƒ½æœªè®¾ç½®å­˜å‚¨è®¸å¯");
 			}
 			file = new File(root);
 			if (!file.mkdirs()) {
-				TException.envException("android»·¾³ÏÂ£¬´´½¨Windows²âÊÔ»·¾³Ê±£¬ÏµÍ³¸ùÄ¿Â¼´´½¨Ê§°Ü£¬¿ÉÄÜÎ´ÉèÖÃ´æ´¢Ğí¿É");
+				TException.envException("androidç¯å¢ƒä¸‹ï¼Œåˆ›å»ºWindowsæµ‹è¯•ç¯å¢ƒæ—¶ï¼Œç³»ç»Ÿæ ¹ç›®å½•åˆ›å»ºå¤±è´¥ï¼Œå¯èƒ½æœªè®¾ç½®å­˜å‚¨è®¸å¯");
 			}
 		}
 	}

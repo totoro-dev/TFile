@@ -6,17 +6,17 @@ public final class AndroidEnv {
 	public AndroidEnv(){
 		SystemProperties android = SystemProperties.getTestSys("android");
 		if (android.isAndroid()) {
-			// ±¾µØ²âÊÔ»·¾³¼ÈÊÇAndroidÏµÍ³£¬ÎŞĞè¸ü¸ÄÏµÍ³ÌØĞÔ
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ—¢æ˜¯Androidç³»ç»Ÿï¼Œæ— éœ€æ›´æ”¹ç³»ç»Ÿç‰¹æ€§
 			return;
 		}
 		String tmp = "",root = "",noRoot = "";
 		if (android.isWindows()) {
-			// ±¾µØ²âÊÔ»·¾³ÊÇwindowsÏµÍ³
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ˜¯windowsç³»ç»Ÿ
 			tmp = android.getTmpDir() + "data\\user\\0\\cache\\";
 			root = android.getRootDir() + "sdcard\\";
 			noRoot = root;
 		}else if (android.isLinuxButAndroid()) {
-			// ±¾µØ²âÊÔ»·¾³ÊÇLinuxÏµÍ³,µ«²»ÊÇAndroidÏµÍ³
+			// æœ¬åœ°æµ‹è¯•ç¯å¢ƒæ˜¯Linuxç³»ç»Ÿ,ä½†ä¸æ˜¯Androidç³»ç»Ÿ
 			tmp = android.getTmpDir() + "data/user/0/cache";
 			root = android.getRootDir() + "sdcard/";
 			noRoot = "/sdcard/";

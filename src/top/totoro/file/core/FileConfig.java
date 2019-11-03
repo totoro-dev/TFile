@@ -1,26 +1,26 @@
 package top.totoro.file.core;
 
 /**
- * ÎÄ¼þµÄÒ»Ð©»ù´¡ÊôÐÔ
+ * æ–‡ä»¶çš„ä¸€äº›åŸºç¡€å±žæ€§
  * 
- * @author »ÆÁúÈýË®
+ * @author é»„é¾™ä¸‰æ°´
  *
  * @param <TFile>
- *            ×îÖÕµÄÎÄ¼þ²Ù×÷
+ *            æœ€ç»ˆçš„æ–‡ä»¶æ“ä½œ
  */
 interface FileConfig {
-	// ÉèÖÃÎÄ¼þÒþ²ØÊôÐÔ
+	// è®¾ç½®æ–‡ä»¶éšè—å±žæ€§
 	TFile setHide();
 
-	// ÒÆ³ýÒþ²ØÊôÐÔ
+	// ç§»é™¤éšè—å±žæ€§
 	TFile removeHide();
 
-	// ÉèÖÃÖ»¶ÁÊôÐÔ
+	// è®¾ç½®åªè¯»å±žæ€§
 	TFile setOnlyRead();
 
-	// ÒÆ³ýÖ»¶ÁÊôÐÔ
+	// ç§»é™¤åªè¯»å±žæ€§
 	TFile removeOnlyRead();
 
-	// »ØÊÕ×ÊÔ´
+	// å›žæ”¶èµ„æº
 	TFile recycle();
 }

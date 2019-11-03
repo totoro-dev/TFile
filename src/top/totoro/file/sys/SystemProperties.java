@@ -4,15 +4,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public final class SystemProperties {
-	// ´úÂëÔËĞĞÏµÍ³µÄÒ»Ğ©±ØÒªĞÅÏ¢;
+	// ä»£ç è¿è¡Œç³»ç»Ÿçš„ä¸€äº›å¿…è¦ä¿¡æ¯;
 	private final static Map<String, String> SYS_PROPERTIES = new HashMap<>();
-	public final String FILE_SEPARATOR = "file.separator"; // ÎÄ¼şÂ·¾¶·Ö¸ô·û
-	public final String PATH_SEPARATOR = "path.separator"; // Â·¾¶-Â·¾¶·Ö¸ô·û
-	public final String LINE_SEPARATOR = "line.separator"; // ĞĞ·Ö¸ô·û
-	public final String IO_TMPDIR = "java.io.tmpdir"; // ÏµÍ³Ä¬ÈÏÁÙÊ±ÎÄ¼şÂ·¾¶
-	public final String ROOT_DIR = "user.home"; // ÏµÍ³¸ùÄ¿Â¼
-	public final String OS_NAME = "os.name"; // ÏµÍ³Ãû³Æ£¨Windows/Linux/Unix£©
-	public final String NO_ROOT = "no.root"; // ²»Ö¸¶¨¸ùÄ¿Â¼
+	public final String FILE_SEPARATOR = "file.separator"; // æ–‡ä»¶è·¯å¾„åˆ†éš”ç¬¦
+	public final String PATH_SEPARATOR = "path.separator"; // è·¯å¾„-è·¯å¾„åˆ†éš”ç¬¦
+	public final String LINE_SEPARATOR = "line.separator"; // è¡Œåˆ†éš”ç¬¦
+	public final String IO_TMPDIR = "java.io.tmpdir"; // ç³»ç»Ÿé»˜è®¤ä¸´æ—¶æ–‡ä»¶è·¯å¾„
+	public final String ROOT_DIR = "user.home"; // ç³»ç»Ÿæ ¹ç›®å½•
+	public final String OS_NAME = "os.name"; // ç³»ç»Ÿåç§°ï¼ˆWindows/Linux/Unixï¼‰
+	public final String NO_ROOT = "no.root"; // ä¸æŒ‡å®šæ ¹ç›®å½•
 
 	private SystemProperties() {
 		if (SYS_PROPERTIES.isEmpty()) {
@@ -60,7 +60,7 @@ public final class SystemProperties {
 	}
 	
 	/**
-	 * @return »ñÈ¡µ±Ç°ÔËĞĞÏµÍ³µÄÄ¬ÈÏÁÙÊ±ÎÄ¼şÂ·¾¶
+	 * @return è·å–å½“å‰è¿è¡Œç³»ç»Ÿçš„é»˜è®¤ä¸´æ—¶æ–‡ä»¶è·¯å¾„
 	 */
 	public String getTmpDir() {
 		String tmp = SYS_PROPERTIES.get(IO_TMPDIR);
@@ -99,7 +99,7 @@ public final class SystemProperties {
 	}
 
 	/**
-	 * @return »ñÈ¡µ±Ç°ÔËĞĞÏµÍ³µÄÂ·¾¶Ïà¹ØĞÅÏ¢¼¯ºÏ
+	 * @return è·å–å½“å‰è¿è¡Œç³»ç»Ÿçš„è·¯å¾„ç›¸å…³ä¿¡æ¯é›†åˆ
 	 */
 	public synchronized Map<String, String> getProperties() {
 		return SYS_PROPERTIES;

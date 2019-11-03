@@ -3,40 +3,40 @@ package top.totoro.file.core;
 import top.totoro.file.util.Disk;
 
 /**
- * �ļ�������ʼ��
+ * 文件操作初始化
  * 
- * @author ������ˮ
+ * @author 黄龙三水
  *
  * @param <TFile>
  */
 interface FileInitial {
-	// ѡ��洢�̷�
+	// 选择存储盘符
 	TFile toDisk(Disk disk);
 
-	// ��pathת��Ϊ���л����µ�ȫ·��,ͳһʹ�÷ָ���������
+	// 将path转化为运行环境下的全路径,统一使用分隔符“，”
 	TFile toPath(String path);
 
-	// ��pathsת��Ϊ���ȫ·��������ȫ·���÷ָ���������������ȫ·���÷ָ�����|��
+	// 将paths转化为多个全路径，单个全路径用分隔符“，”；各个全路径用分隔符“|”
 	TFile toPaths(String paths);
 
-	// ���õ����ļ���
+	// 设置单个文件名
 	TFile toName(String name);
 
-	// ���ö���ļ���
+	// 设置多个文件名
 	TFile toNames(String... names);
 
-	// ����һ���ļ�����
+	// 生成一个文件对象
 	TFile toFile();
 
-	// ���ɶ���ļ�����
+	// 生成多个文件对象
 	TFile toFiles();
 
-	// ���������ļ�����һ����ǩ���ñ�ǩ�ᱻ�洢��ϵͳ�У��Ժ�ֻ��Ҫʹ�������ǩ�Ϳ����ҵ���Ӧ�ļ�
+	// 给创建的文件设置一个标签，该标签会被存储到系统中，以后只需要使用这个标签就可以找到对应文件
 	TFile setFlag(String flag);
 
 	// @see{FileProperty#removeFlagFile(String flag)}
 	void removeFlag(String flag);
 
-	// Recycle������Դ������
+	// Recycle所有资源及配置
 	TFile recycle();
 }

@@ -18,22 +18,22 @@ public class TCommonerTest {
 		property.setFile(new File(property.getPath() + property.getName()));
 		if (!property.exists()) {
 			commoner.create();
-			System.out.println(property.toString() + "\n\nÎÄ¼ş²»´æÔÚ,´´½¨ÎÄ¼ş:" + property.getFile());
+			System.out.println(property.toString() + "\n\næ–‡ä»¶ä¸å­˜åœ¨,åˆ›å»ºæ–‡ä»¶:" + property.getFile());
 		} else {
-			System.out.println("\nÎÄ¼şÒÑ´æÔÚ,Çå¿ÕÎÄ¼ş:" + property.getFile());
+			System.out.println("\næ–‡ä»¶å·²å­˜åœ¨,æ¸…ç©ºæ–‡ä»¶:" + property.getFile());
 			commoner.clear();
 			if (property.getFile().length() == 0) {
-				System.out.println("\nÎÄ¼şÒÑÇå¿Õ,ÖØÃüÃûÎÄ¼ş:" + property.getFile());
+				System.out.println("\næ–‡ä»¶å·²æ¸…ç©º,é‡å‘½åæ–‡ä»¶:" + property.getFile());
 				commoner.rename("t2.t");
 				if (property.getFile().getName().equals("t2.t")) {
-					System.out.println("\nÎÄ¼şÒÑÖØÃüÃû£¬É¾³ıÎÄ¼ş£º" + property.getFile());
+					System.out.println("\næ–‡ä»¶å·²é‡å‘½åï¼Œåˆ é™¤æ–‡ä»¶ï¼š" + property.getFile());
 					commoner.delete();
 					if (!property.exists()) {
-						System.out.println("\nÎÄ¼şÒÑÉ¾³ı£¬´´½¨³õÊ¼ÎÄ¼ş£º" + property.getFile());
+						System.out.println("\næ–‡ä»¶å·²åˆ é™¤ï¼Œåˆ›å»ºåˆå§‹æ–‡ä»¶ï¼š" + property.getFile());
 						property.setName("t1.t");
 						property.setFile(new File(property.getPath()+property.getName()));
 						commoner.create();
-						System.out.println("\n²âÊÔ½áÊø£º" + property.toString());
+						System.out.println("\næµ‹è¯•ç»“æŸï¼š" + property.toString());
 					}
 				}
 			}

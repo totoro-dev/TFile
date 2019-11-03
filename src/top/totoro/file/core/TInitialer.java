@@ -9,9 +9,9 @@ import top.totoro.file.util.DiskChose;
 import top.totoro.file.util.TException;
 
 /**
- * ´´½¨¡¢É¾³ı¡¢Çå¿Õ¡¢ÖØÃüÃûÒ»¸öÎÄ¼şËùÒª×öµÄ³õÊ¼»¯ºÍ»ù±¾²Ù×÷
- * ±ÈÈç£ºÖ¸¶¨ÎÄ¼şËùÔÚÅÌ·û£»ÎÄ¼şÄ¿Â¼£»ÎÄ¼şÃû¡£¡£¡£
- * @author »ÆÁúÈıË®
+ * åˆ›å»ºã€åˆ é™¤ã€æ¸…ç©ºã€é‡å‘½åä¸€ä¸ªæ–‡ä»¶æ‰€è¦åšçš„åˆå§‹åŒ–å’ŒåŸºæœ¬æ“ä½œ
+ * æ¯”å¦‚ï¼šæŒ‡å®šæ–‡ä»¶æ‰€åœ¨ç›˜ç¬¦ï¼›æ–‡ä»¶ç›®å½•ï¼›æ–‡ä»¶åã€‚ã€‚ã€‚
+ * @author é»„é¾™ä¸‰æ°´
  *
  */
 public final class TInitialer implements FileInitial {
@@ -89,7 +89,7 @@ public final class TInitialer implements FileInitial {
 				mFileProperty.setFile(new File(path));
 			}
 		} else {
-			TException.pathException("ÎÄ¼şÂ·¾¶Î´Ö¸¶¨");
+			TException.pathException("æ–‡ä»¶è·¯å¾„æœªæŒ‡å®š");
 		}
 		return mTFile;
 	}
@@ -111,7 +111,7 @@ public final class TInitialer implements FileInitial {
 					files.add(new File(path + names.get(i)));
 				}
 			} else {
-				TException.fileNameException("ÇëÖ¸¶¨ÎÄ¼şÂ·¾¶ºÍ¸öÊı¶ÔÓ¦µÄÎÄ¼şÃû");
+				TException.fileNameException("è¯·æŒ‡å®šæ–‡ä»¶è·¯å¾„å’Œä¸ªæ•°å¯¹åº”çš„æ–‡ä»¶å");
 			}
 		} else if (mFileProperty.getPath() != null && names != null) {
 			String path = mFileProperty.getPath() + mSeparator;
@@ -136,7 +136,7 @@ public final class TInitialer implements FileInitial {
 	}
 
 	/**
-	 * ¹¹½¨Â·¾¶
+	 * æ„å»ºè·¯å¾„
 	 */
 	private String path(String p, String flag) {
 		StringBuilder path = new StringBuilder();

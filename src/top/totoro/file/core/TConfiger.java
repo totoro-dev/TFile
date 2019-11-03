@@ -7,14 +7,14 @@ import top.totoro.file.sys.SystemProperties;
 import top.totoro.file.util.TException;
 
 /**
- * ¸øÒ»¸öÎÄ¼şÉèÖÃÒ»Ğ©ÊôĞÔ
- * ±ÈÈç£ºÒş²ØÊôĞÔ£¨hide able£©£¬Ö»¶ÁÊôĞÔ£¨readable£©£¬ÎÄ¼ş±êÖ¾£¨flag£©
- * 1. Í¬Ê±¿ÉÒÔÒÆ³ıÕâĞ©ÊôĞÔ
- * 2. Í¨¹ıÎÄ¼ş±êÖ¾Ö±½ÓÄÃµ½Ö¸¶¨ÎÄ¼ş¶ø²»ĞèÒªÊ¹ÓÃÊ±ÔÙ´Î¹¹½¨¸ÃÎÄ¼şÏà¹ØĞÅÏ¢
+ * ç»™ä¸€ä¸ªæ–‡ä»¶è®¾ç½®ä¸€äº›å±æ€§
+ * æ¯”å¦‚ï¼šéšè—å±æ€§ï¼ˆhide ableï¼‰ï¼Œåªè¯»å±æ€§ï¼ˆreadableï¼‰ï¼Œæ–‡ä»¶æ ‡å¿—ï¼ˆflagï¼‰
+ * 1. åŒæ—¶å¯ä»¥ç§»é™¤è¿™äº›å±æ€§
+ * 2. é€šè¿‡æ–‡ä»¶æ ‡å¿—ç›´æ¥æ‹¿åˆ°æŒ‡å®šæ–‡ä»¶è€Œä¸éœ€è¦ä½¿ç”¨æ—¶å†æ¬¡æ„å»ºè¯¥æ–‡ä»¶ç›¸å…³ä¿¡æ¯
  * 
- * ×¢£º²»Í¬»·¾³ÏÂµÄÒş²ØÊôĞÔÉèÖÃ·½Ê½²»Í¬£¨Windows/Linux£¨°üÀ¨Android£©£©
+ * æ³¨ï¼šä¸åŒç¯å¢ƒä¸‹çš„éšè—å±æ€§è®¾ç½®æ–¹å¼ä¸åŒï¼ˆWindows/Linuxï¼ˆåŒ…æ‹¬Androidï¼‰ï¼‰
  * 
- * @author »ÆÁúÈıË®
+ * @author é»„é¾™ä¸‰æ°´
  *
  */
 public final class TConfiger implements FileConfig {
@@ -37,7 +37,7 @@ public final class TConfiger implements FileConfig {
 		String os = SystemProperties.getSystem().getOsName();
 		File file = mFileProperty.getFile(), old = file;
 		if (file == null) {
-			TException.pathException("ÉèÖÃÒş²ØÊôĞÔÊ§°Ü£ºÉèÖÃÒş²ØÊôĞÔÇ°£¬Î´Ö¸¶¨ÎÄ¼ş");
+			TException.pathException("è®¾ç½®éšè—å±æ€§å¤±è´¥ï¼šè®¾ç½®éšè—å±æ€§å‰ï¼ŒæœªæŒ‡å®šæ–‡ä»¶");
 			return mTFile;
 		}
 		if (os.toLowerCase().contains("win")) {
@@ -49,17 +49,17 @@ public final class TConfiger implements FileConfig {
 					e.printStackTrace();
 				}
 			} else {
-				TException.pathException("ÉèÖÃÒş²ØÊôĞÔÊ§°Ü£ºwindowsÏÂÉèÖÃÒş²ØÊôĞÔÊ±£¬ÎÄ¼ş²»´æÔÚ;ÇëÈ·±£ÔÚµ÷ÓÃsetHide·½·¨Ç°ÎÄ¼şÒÑ±»´´½¨");
+				TException.pathException("è®¾ç½®éšè—å±æ€§å¤±è´¥ï¼šwindowsä¸‹è®¾ç½®éšè—å±æ€§æ—¶ï¼Œæ–‡ä»¶ä¸å­˜åœ¨;è¯·ç¡®ä¿åœ¨è°ƒç”¨setHideæ–¹æ³•å‰æ–‡ä»¶å·²è¢«åˆ›å»º");
 			}
 		} else if (os.toLowerCase().contains("linux")) {
 			String name = file.getName();
 			String path = file.getPath().substring(0, file.getPath().lastIndexOf(separator) + 1);
-			// LinuxÏµÍ³£¬ÎÄ¼şÒÑ±»´´½¨
-			if (file.exists() && file.isFile() && path != null && name != null && !name.startsWith(".")) {// ÎÄ¼şÒş²Ø
+			// Linuxç³»ç»Ÿï¼Œæ–‡ä»¶å·²è¢«åˆ›å»º
+			if (file.exists() && file.isFile() && path != null && name != null && !name.startsWith(".")) {// æ–‡ä»¶éšè—
 				mFileProperty.setName("." + name);
 				mFileProperty.setFile(new File(path + separator + mFileProperty.getName()));
 				file.renameTo(mFileProperty.getFile());
-			} else if (file.exists() && file.isDirectory() && path != null) {// ÎÄ¼ş¼ĞÒş²Ø
+			} else if (file.exists() && file.isDirectory() && path != null) {// æ–‡ä»¶å¤¹éšè—
 				StringBuilder builder = new StringBuilder(path).append(".").append(name).append(separator);
 				mFileProperty.setPath(builder.toString());
 				mFileProperty.setFile(new File(builder.toString()));
@@ -75,7 +75,7 @@ public final class TConfiger implements FileConfig {
 		String os = SystemProperties.getSystem().getOsName();
 		File file = mFileProperty.getFile();
 		if (file == null) {
-			TException.pathException("ÒÆ³ıÒş²ØÊôĞÔÇ°£¬Î´Ö¸¶¨ÎÄ¼ş");
+			TException.pathException("ç§»é™¤éšè—å±æ€§å‰ï¼ŒæœªæŒ‡å®šæ–‡ä»¶");
 			return mTFile;
 		}
 		if (os.toLowerCase().contains("win")) {
@@ -87,7 +87,7 @@ public final class TConfiger implements FileConfig {
 					e.printStackTrace();
 				}
 			} else {
-				TException.pathException("windows»·¾³ÏÂÒÆ³ıÒş²ØÊôĞÔÊ±£¬ÎÄ¼ş²»´æÔÚ£ºÇëÈ·±£ÔÚµ÷ÓÃsetHide·½·¨Ç°ÎÄ¼şÒÑ±»´´½¨£¬¿ÉÒÔµ÷ÓÃcreateFile»òcreateFiles");
+				TException.pathException("windowsç¯å¢ƒä¸‹ç§»é™¤éšè—å±æ€§æ—¶ï¼Œæ–‡ä»¶ä¸å­˜åœ¨ï¼šè¯·ç¡®ä¿åœ¨è°ƒç”¨setHideæ–¹æ³•å‰æ–‡ä»¶å·²è¢«åˆ›å»ºï¼Œå¯ä»¥è°ƒç”¨createFileæˆ–createFiles");
 			}
 		} else if (os.toLowerCase().contains("linux")) {
 			String name = file.getName();
@@ -98,15 +98,15 @@ public final class TConfiger implements FileConfig {
 					return mTFile;
 				}
 			} else {
-				TException.fileNameException("ÒÆ³ı" + name + "ÎÄ¼şÒş²ØÊôĞÔÊ§°Ü£ºÎÄ¼şÃû²»ÄÜÎª¿ÕÇÒ²»ÄÜÒÔ'.'¿ªÍ·");
+				TException.fileNameException("ç§»é™¤" + name + "æ–‡ä»¶éšè—å±æ€§å¤±è´¥ï¼šæ–‡ä»¶åä¸èƒ½ä¸ºç©ºä¸”ä¸èƒ½ä»¥'.'å¼€å¤´");
 				return mTFile;
 			}
-			// LinuxÏµÍ³£¬ÎÄ¼şÒÑ±»´´½¨
-			if (file.exists() && file.isFile()) {// ÎÄ¼şÈ¡ÏûÒş²Ø
+			// Linuxç³»ç»Ÿï¼Œæ–‡ä»¶å·²è¢«åˆ›å»º
+			if (file.exists() && file.isFile()) {// æ–‡ä»¶å–æ¶ˆéšè—
 				mFileProperty.setName(file.getName().substring(1));
 				mFileProperty.setFile(new File(path + separator + mFileProperty.getName()));
 				file.renameTo(mFileProperty.getFile());
-			} else if (file.exists() && file.isDirectory()) { // ÎÄ¼ş¼ĞÈ¡ÏûÒş²Ø
+			} else if (file.exists() && file.isDirectory()) { // æ–‡ä»¶å¤¹å–æ¶ˆéšè—
 				StringBuilder builder = new StringBuilder(path).append(separator).append(name).append(separator);
 				mFileProperty.setPath(builder.toString());
 				mFileProperty.setFile(new File(builder.toString()));

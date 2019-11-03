@@ -5,9 +5,9 @@ import java.util.Map;
 
 
 /**
- * 定义所有相关的异常
+ * 瀹氫箟鎵�鏈夌浉鍏崇殑寮傚父
  * 
- * @author 黄龙三水
+ * @author 榛勯緳涓夋按
  *
  */
 public class TException extends Exception {
@@ -34,7 +34,7 @@ public class TException extends Exception {
 		if (mNewMsg != null) {
 			if ((mTException = mExptionMap.get(mNewMsg)) != null) {
 			} else {
-				if (mExptionMap.size() > 9) { // 超过10个相同异常时清空
+				if (mExptionMap.size() > 9) { // 瓒呰繃10涓浉鍚屽紓甯告椂娓呯┖
 					mExptionMap.clear();
 				}
 				mTException = new TException(mNewMsg);

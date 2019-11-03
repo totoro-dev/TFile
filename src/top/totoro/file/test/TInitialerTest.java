@@ -16,9 +16,9 @@ public class TInitialerTest {
 		tfi.toFile();
 		tfi.toNames("totoro1.txt", "totoro2.txt");
 		tfi.toFiles();
-		System.out.println("recycle֮ǰ��" + tfi.getFileProperty().toString());
+		System.out.println("recycle之前：" + tfi.getFileProperty().toString());
 		tfi.recycle();
-		System.out.println("recycle֮��" + tfi.getFileProperty().toString());
+		System.out.println("recycle之后：" + tfi.getFileProperty().toString());
 	}
 
 }

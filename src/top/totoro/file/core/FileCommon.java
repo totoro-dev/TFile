@@ -1,33 +1,33 @@
 package top.totoro.file.core;
 
 interface FileCommon {
-	// makeÒ»¸öÈ«Â·¾¶
+	// makeä¸€ä¸ªå…¨è·¯å¾„
 	TFile mkdirs();
 
-	// make¶à¸öÈ«Â·¾¶£¬Èç¹ûÃ»ÓĞÉèÖÃtoPaths(String paths)Ä¬ÈÏÖ´ĞĞmkdirs()
+	// makeå¤šä¸ªå…¨è·¯å¾„ï¼Œå¦‚æœæ²¡æœ‰è®¾ç½®toPaths(String paths)é»˜è®¤æ‰§è¡Œmkdirs()
 	TFile mkdirsAll();
 
-	// ´´½¨¶ÔÓ¦µÄÎÄ¼ş
+	// åˆ›å»ºå¯¹åº”çš„æ–‡ä»¶
 	TFile create();
 
-	// Èç¹ûÉèÖÃÁËtoNames(String... names)£¬Ôò´´½¨names.size()¸öÎÄ¼ş
+	// å¦‚æœè®¾ç½®äº†toNames(String... names)ï¼Œåˆ™åˆ›å»ºnames.size()ä¸ªæ–‡ä»¶
 	TFile createAll();
 
-	// Çå¿Õ¶ÔÓ¦µÄÎÄ¼ş
+	// æ¸…ç©ºå¯¹åº”çš„æ–‡ä»¶
 	TFile clear();
 
-	// Èç¹ûÉèÖÃÁËtoNames(String... names)£¬ÔòÇå¿Õnames.size()¸öÎÄ¼ş
+	// å¦‚æœè®¾ç½®äº†toNames(String... names)ï¼Œåˆ™æ¸…ç©ºnames.size()ä¸ªæ–‡ä»¶
 	TFile clearAll();
 
-	// É¾³ı¶ÔÓ¦ÎÄ¼ş
+	// åˆ é™¤å¯¹åº”æ–‡ä»¶
 	TFile delete();
 
-	// Èç¹ûÉèÖÃÁËtoNames(String... names)£¬ÔòÉ¾³ınames.size()¸öÎÄ¼ş
+	// å¦‚æœè®¾ç½®äº†toNames(String... names)ï¼Œåˆ™åˆ é™¤names.size()ä¸ªæ–‡ä»¶
 	TFile deleteAll();
 
-	// ÎÄ¼şÖØÃüÃû
+	// æ–‡ä»¶é‡å‘½å
 	TFile rename(String name);
 
-	// RecycleËùÓĞ×ÊÔ´¼°ÅäÖÃ
+	// Recycleæ‰€æœ‰èµ„æºåŠé…ç½®
 	TFile recycle();
 }

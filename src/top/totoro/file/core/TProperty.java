@@ -8,9 +8,9 @@ import java.util.Map;
 import top.totoro.file.util.Disk;
 
 /**
- * TFile´´½¨µÄÎÄ¼şµÄËùÓĞÏà¹Ø»ù±¾ÌØĞÔ
+ * TFileåˆ›å»ºçš„æ–‡ä»¶çš„æ‰€æœ‰ç›¸å…³åŸºæœ¬ç‰¹æ€§
  * 
- * @author »ÆÁúÈıË®
+ * @author é»„é¾™ä¸‰æ°´
  *
  */
 public final class TProperty implements FileProperty {

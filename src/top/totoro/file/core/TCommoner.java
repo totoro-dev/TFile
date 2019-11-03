@@ -29,7 +29,7 @@ public class TCommoner implements FileCommon{
 			File dir = new File(mFileProperty.getPath());
 			if (!dir.isDirectory()) {
 				if (!dir.mkdirs()) {
-					TException.pathException("ÎÄ¼şÄ¿Â¼´´½¨Ê§°Ü");
+					TException.pathException("æ–‡ä»¶ç›®å½•åˆ›å»ºå¤±è´¥");
 				}
 			}
 			// mFileProperty.setFile(dir);
@@ -46,7 +46,7 @@ public class TCommoner implements FileCommon{
 				File dir = new File(path);
 				if (!dir.isDirectory()) {
 					if (!dir.mkdirs()) {
-						TException.pathException("ÎÄ¼şÄ¿Â¼´´½¨Ê§°Ü:¿ÉÄÜ´ÅÅÌ" + DiskChose.disk(mFileProperty.getDisk()) + "²»´æÔÚ");
+						TException.pathException("æ–‡ä»¶ç›®å½•åˆ›å»ºå¤±è´¥:å¯èƒ½ç£ç›˜" + DiskChose.disk(mFileProperty.getDisk()) + "ä¸å­˜åœ¨");
 					}
 				}
 				files.add(dir);
@@ -64,16 +64,16 @@ public class TCommoner implements FileCommon{
 		if (file != null) {
 			String name = file.getName();
 			if (file.exists()) {
-				TException.fileNameException(name + "ÎÄ¼ş´´½¨Ê§°Ü£ºÎÄ¼şÒÑ´æÔÚ");
+				TException.fileNameException(name + "æ–‡ä»¶åˆ›å»ºå¤±è´¥ï¼šæ–‡ä»¶å·²å­˜åœ¨");
 				return mTFile;
 			}
 			if (!name.startsWith(".")) {
 				if ((new File(file.getPath() + mSeparator + "." + name)).exists()) {
-					TException.fileNameException(name + "ÎÄ¼ş´´½¨Ê§°Ü£ºÎÄ¼şÒÑ±»Òş²Ø");
+					TException.fileNameException(name + "æ–‡ä»¶åˆ›å»ºå¤±è´¥ï¼šæ–‡ä»¶å·²è¢«éšè—");
 					return mTFile;
 				}
 			} else {
-				TException.fileNameException(name + "ÎÄ¼ş´´½¨Ê§°Ü£ºÎÄ¼şÃû²»ÄÜÒÔ'.'¿ªÍ·");
+				TException.fileNameException(name + "æ–‡ä»¶åˆ›å»ºå¤±è´¥ï¼šæ–‡ä»¶åä¸èƒ½ä»¥'.'å¼€å¤´");
 				return mTFile;
 			}
 			String path = file.getPath().substring(0, file.getPath().lastIndexOf(mSeparator) + 1);
@@ -86,14 +86,14 @@ public class TCommoner implements FileCommon{
 			try {
 				if (name != null) {
 					if (!file.createNewFile() && file.exists()) {
-						System.out.println(file + "Ä¿Â¼´´½¨³É¹¦");
+						System.out.println(file + "ç›®å½•åˆ›å»ºæˆåŠŸ");
 					}
 				}
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
 		} else
-			TException.fileNameException("ÎÄ¼ş´´½¨Ê§°Ü£ºÎ´Ö¸¶¨ÎÄ¼ş");
+			TException.fileNameException("æ–‡ä»¶åˆ›å»ºå¤±è´¥ï¼šæœªæŒ‡å®šæ–‡ä»¶");
 		return mTFile;
 	}
 
@@ -123,9 +123,9 @@ public class TCommoner implements FileCommon{
 					e.printStackTrace();
 				}
 			} else
-				TException.fileNameException("Çå¿ÕÎÄ¼şÊ§°Ü£ºÎÄ¼ş" + file.getName() + "²»´æÔÚ");
+				TException.fileNameException("æ¸…ç©ºæ–‡ä»¶å¤±è´¥ï¼šæ–‡ä»¶" + file.getName() + "ä¸å­˜åœ¨");
 		} else {
-			TException.fileNameException("Çå¿ÕÎÄ¼şÊ§°Ü£ºÎ´Ö¸¶¨ÎÄ¼ş");
+			TException.fileNameException("æ¸…ç©ºæ–‡ä»¶å¤±è´¥ï¼šæœªæŒ‡å®šæ–‡ä»¶");
 		}
 		return mTFile;
 	}
@@ -176,10 +176,10 @@ public class TCommoner implements FileCommon{
 				mFileProperty.setFile(new File(path + name));
 				file.renameTo(mFileProperty.getFile());
 			} else {
-				TException.pathException("ÖØÃüÃûÎÄ¼şÊ§°Ü£ºÔ­ÎÄ¼ş²»´æÔÚ");
+				TException.pathException("é‡å‘½åæ–‡ä»¶å¤±è´¥ï¼šåŸæ–‡ä»¶ä¸å­˜åœ¨");
 			}
 		} else {
-			TException.pathException("ÖØÃüÃûÎÄ¼şÊ§°Ü£ºÎ´Ö¸¶¨ÎÄ¼ş");
+			TException.pathException("é‡å‘½åæ–‡ä»¶å¤±è´¥ï¼šæœªæŒ‡å®šæ–‡ä»¶");
 		}
 		return mTFile;
 	}

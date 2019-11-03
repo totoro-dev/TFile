@@ -9,20 +9,20 @@ public class TFileTest {
 	public static void main(String[] args) {
 //		top.totoro.file.util.TException.setDebug(true);
 //		new top.totoro.file.sys.AndroidEnv();
+		String path = "tfile,test,main";
 		TFile.builder()
 		.toDisk(Disk.C)
-		.toPath("tfile,test,main")
+		.toPath(path)
 		.toFile()
 		.mkdirs()
-//		.toName("totoro.htm")
-//		.toFile()
-//		.create()
+		.toName("totoro.htm")
+		.toFile()
+		.create()
 		.setFlag("totoro");
 		TFile.builder()
 		.toNames("t1.t","t2.t","t3.t")
 		.toFiles()
 		.createAll();
-		String path = "tfile,test,main";
 		TFile.builder()
 		.toPaths(path+",a;"+path+",b;"+path+",c")
 		.toNames("t4.t","t5.t","t6.t")
