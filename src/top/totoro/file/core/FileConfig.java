@@ -5,8 +5,6 @@ package top.totoro.file.core;
  * 
  * @author 黄龙三水
  *
- * @param <TFile>
- *            最终的文件操作
  */
 interface FileConfig {
 	// 设置文件隐藏属性

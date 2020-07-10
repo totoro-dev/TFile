@@ -4,3 +4,4 @@ bin/*
 
 RemoteSystemsTempFiles/.project
 *.class
+/.idea/
