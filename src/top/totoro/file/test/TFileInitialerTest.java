@@ -6,15 +6,22 @@ import top.totoro.file.util.Disk;
 
 public class TFileInitialerTest {
 
-	public static void main(String[] args) {
-		top.totoro.file.util.TException.setDebug(true);
-		new top.totoro.file.sys.LinuxEnv();
-		TInitialer tfi = new TInitialer(new TProperty());
-		tfi.toDisk(Disk.C);
-		System.out.println(tfi.toPath("initial,test,tfi"));
-		tfi.toName("totoro3.txt");
-		tfi.toFile();
-		tfi.create();
+    public static void main(String[] args) {
+        top.totoro.file.util.TException.setDebug(true);
+        new top.totoro.file.sys.LinuxEnv();
+        TInitialer tfi = new TInitialer(new TProperty());
+        tfi.toDisk(Disk.C);
+        System.out.println(tfi.toPath("initial,test,tfi"));
+        tfi.toName("totoro3.txt");
+        tfi.toFile();
+
+        /* 测试issues:#1 */
+        System.out.println(tfi.getFileProperty().getFile());
+        tfi.toPath("initial,test2,tfi");
+        tfi.toFile();
+        System.out.println(tfi.getFileProperty().getFile());
+
+//		tfi.create();
 //		tfi.rename("totoro1.txt");
 //		System.out.println(tfi.toPaths("initial,test,t1").getPaths());
 //		tfi.toNames("totoro1.txt", "totoro2.txt");
@@ -25,6 +32,6 @@ public class TFileInitialerTest {
 //		System.out.println(tfi.getmFileProperty().getFile());
 //		tfi.recycle();
 //		System.out.println(tfi.getmFileProperty().getFile());
-	}
+    }
 
 }

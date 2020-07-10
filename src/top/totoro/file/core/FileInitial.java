@@ -7,7 +7,6 @@ import top.totoro.file.util.Disk;
  * 
  * @author 黄龙三水
  *
- * @param <TFile>
  */
 interface FileInitial {
 	// 选择存储盘符

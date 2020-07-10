@@ -20,7 +20,7 @@ public class TFileConfigerTest {
 		configer.setOnlyRead();
 		configer.removeOnlyRead();
 		configer.removeHide();
-		configer.setFlagFile("t1");
+//		configer.setFlagFile("t1");
 		System.out.println(property.getFlagFile("t1"));
 	}
 }

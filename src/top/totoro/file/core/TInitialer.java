@@ -38,7 +38,7 @@ public final class TInitialer implements FileInitial {
 		mFileProperty.recycleProperty();
 		return mTFile;
 	}
-	
+
 	@Override
 	public TFile toDisk(Disk disk) {
 		mFileProperty.setDisk(disk);
@@ -85,6 +85,8 @@ public final class TInitialer implements FileInitial {
 		if ((path = mFileProperty.getPath()) != null) {
 			if ((name = mFileProperty.getName()) != null) {
 				mFileProperty.setFile(new File(path + name));
+				// since v1.0.2 解决前一次设置了文件名对之后创建文件夹时文件名依然存在，导致创建文件夹错误的问题。 issues:#1
+				toName(null);
 			} else {
 				mFileProperty.setFile(new File(path));
 			}
@@ -99,8 +101,9 @@ public final class TInitialer implements FileInitial {
 		LinkedList<String> paths = mFileProperty.getPaths();
 		LinkedList<String> names = mFileProperty.getNames();
 		LinkedList<File> files = new LinkedList<>();
-		File old = mFileProperty.getFile();
-		if (paths != null && paths != null) {
+		File old = mFileProperty.getFile(); // 设置完成之后需要回复之前的文件
+		if (paths != null && names != null) {
+			// 目录和文件名一一对应
 			if (names.size() > 0 && paths.size() >= names.size()) {
 				for (int i = 0; i < names.size(); i++) {
 					files.add(new File(paths.get(i) + names.get(i)));
@@ -119,6 +122,8 @@ public final class TInitialer implements FileInitial {
 				files.add(new File(path + names.get(i)));
 			}
 		}
+		// since v1.0.2 解决前一次设置了文件名对之后创建文件夹时文件名依然存在，导致创建文件夹错误的问题。 issues:#1
+		toNames();
 		mFileProperty.setFile(old);
 		mFileProperty.setFiles(files);
 		return mTFile;
